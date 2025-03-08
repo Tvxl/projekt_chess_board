@@ -1,4 +1,4 @@
-package src1;
+package pack1;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +8,8 @@ public class SchachGUI extends JFrame {
 
     // Ein 8x8-Array, das alle Schachbrettfelder (Buttons) enthält.
     private JButton[][] boardButtons = new JButton[8][8];
+    static boolean angeklickt = false;
+    static String feld;
 
     // Konstruktor, um das Fenster, das Schachbrett und die zusätzlichen Panels aufzubauen.
     public SchachGUI() {
@@ -50,14 +52,24 @@ public class SchachGUI extends JFrame {
                         // Berechne die Schachnotation: Spalte a-h und Reihe 1-8.
                         char colChar = (char) ('a' + currentCol);
                         int rowNumber = 8 - currentRow;
-                        System.out.println("Feld angeklickt: " + colChar + rowNumber);
+                        feld = colChar + "" + rowNumber;
+                        angeklickt = true;
+                       
+                       int[] temp = Uebersetzter.schach_zu_koords(feld); //wandle z.B. e2 zu 5,1 um
+              		  Figur ausgewahlte_figur = new Move().getFigur(new Position(temp[0], temp[1])); //figur der feld koordinate rausfinden
+              		   ausgewahlte_figur.move();
+              		   System.out.println(ausgewahlte_figur.get_move_vorschlage());
+
+                      
+        
+
                     }
                 });
             }
         }
 
         // Setze die Schachfiguren (Bilder) auf die entsprechenden Felder.
-        setChessPieces();
+       // setChessPieces();
 
         // -----------------------------
         // Linkes Panel: Platz für zukünftige Elemente
@@ -87,6 +99,7 @@ public class SchachGUI extends JFrame {
     }
 
     // Methode, um die Schachfiguren als Icons (Bilder) auf dem Brett zu platzieren.
+    /*
     private void setChessPieces() {
         // -----------------------------
         // Schwarze Figuren (oben)
@@ -118,16 +131,6 @@ public class SchachGUI extends JFrame {
             boardButtons[6][col].setIcon(new ImageIcon("images/w_pawn.png"));
         }
     }
-
+*/
     // Hauptmethode zum Starten der Anwendung.
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new SchachGUI();
-            }
-        });
-    }
 }
-
-
