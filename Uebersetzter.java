@@ -9,8 +9,7 @@ public class Uebersetzter {
 	}
 
 	public static String koords_zu_schach(int x, int y) {
-		char spalte = SPALTEN.charAt(x); // charAt gibt zahlen wert zurück wo sich der buchstabe(x) in der SPALTEN var
-											// befindet
+		char spalte = SPALTEN.charAt(x); // charAt gibt zahlen wert zurück wo sich der buchstabe(x) in der SPALTEN var befindet
 		int reihe = y + 1;
 
 		return "" + reihe + spalte;
@@ -22,7 +21,7 @@ public class Uebersetzter {
 	        int reihe = Character.getNumericValue(schach.charAt(1)); //herrausfiltern des zweiten chars(muss zahl sein)
 
 	        int x = SPALTEN.indexOf(spalte); //es wird der index von dem char im SPLATEN var genannt 
-	        int y = reihe - 1;
+	        int y =  7 - reihe +1;
 		return new int[]{x,y};
 
 	}

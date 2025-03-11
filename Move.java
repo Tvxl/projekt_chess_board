@@ -17,50 +17,43 @@ public class Move {
 		for (int i = 0; i < Main_Schach.alle_figuren.size(); i++) {
 			if (Main_Schach.alle_figuren.get(i).getPosition().equals(position)) {
 				return Main_Schach.alle_figuren.get(i);
-			} else {
-
-			}
+			} 
 
 		}
 		return null;
 
 	}
 
-	public boolean istmoeglich(int[] move_vorschlage) { //nicht boolean sondern rpckgabe der liste
-		List<int[]> unter_array_lst = new ArrayList<>();
-		// Überprüfen, ob die Länge gerade ist
-		if (move_vorschlage.length % 2 != 0) {
-		    throw new IllegalArgumentException("nicht zwei");
-		}
-
-		int anzahl_unter_arrays = move_vorschlage.length / 2;
+	public List<Position> eingrenzen_move(List<Position> unter_array_lst, String team, String typ) { 
 		
-
-		for (int i = 0; i < anzahl_unter_arrays; i++) {
-		    int[] feld_vorschlage = new int[2];
-		    for (int j = 0; j < 2; j++) {
-		    	feld_vorschlage[j] = move_vorschlage[i * 2 + j];
-		    }
-		    unter_array_lst.add(feld_vorschlage);
-		}
-
 		// überprüfen ob werte größer 8 dabei sind
-		for (int i = 0; i < unter_array_lst.size(); i++) {
-		  if(unter_array_lst.get(i)[0] > 7 || unter_array_lst.get(i)[1] < 0 ) {
+		for (int i = unter_array_lst.size() - 1; i >= 0; i--) {
+		  if(unter_array_lst.get(i).getReihe() > 7 || unter_array_lst.get(i).getSpalte() > 7) {
 			  unter_array_lst.remove(i);
-			  return false;
+		
+			 
 		  }
-		  if(unter_array_lst.get(i)[1] > 7 || unter_array_lst.get(i)[1] < 0 ) {
+		  else if(unter_array_lst.get(i).getReihe() < 0 || unter_array_lst.get(i).getSpalte() < 0) {
 			  unter_array_lst.remove(i);
-			  return false;
+			
 		  }
+		  else {
+			  for (int j = 0; j < Main_Schach.alle_figuren.size(); j++) {
+				 if(unter_array_lst.get(i).equals( Main_Schach.alle_figuren.get(j).getPosition())) {
+					 unter_array_lst.remove(i);
+					 break;
+				 }
 		  
 		}
 
-		return true;
+		
 
 	}
+	
 }
+		return unter_array_lst;
 
+}
+}
 
 
