@@ -1,0 +1,7 @@
+Während des Prozesses, das Schachprogramm zu entwickeln, habe ich eine Menge gelernt, vor allem im Bereich der Back-End-Logik. Es war unglaublich bereichernd, mich so intensiv mit den inneren Mechanismen des Spiels auseinanderzusetzen. Mit der Unterstützung von Johannes konnte ich tiefer in die Logik eintauchen und Probleme aus neuen Blickwinkeln betrachten. Die Zusammenarbeit hat den gesamten Prozess nicht nur effektiver, sondern auch inspirierender gemacht.
+
+Am meisten Spaß hatte ich, wenn ich auf scheinbar unlösbare Hürden gestoßen bin und diese Schritt für Schritt knacken konnte. Es war ein besonderer Moment, als der Code endlich funktionierte und die Logik des Programms aufging. Solche Erfolgserlebnisse sind einfach unschlagbar.
+
+Die Herausforderungen waren allerdings auch zahlreich. Besonders knifflig war es manchmal, den Überblick über komplexe Abläufe und Zusammenhänge zu behalten. Aber mit Geduld, viel Debugging und vor allem durch den Austausch mit Johannes habe ich einen Weg gefunden, jedes Hindernis zu überwinden. Dieser Prozess hat mir gezeigt, wie wichtig Ausdauer und eine offene Herangehensweise sind.
+
+Insgesamt hat mir dieses Projekt nicht nur geholfen, technisches Wissen zu vertiefen, sondern auch meine Problemlösungsfähigkeiten und Teamkompetenzen zu stärken. Es war eine aufregende Reise, und ich bin stolz darauf, was ich dabei erreicht habe.
