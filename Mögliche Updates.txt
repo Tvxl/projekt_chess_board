@@ -1,0 +1,9 @@
+Mögliche Updates:
+	- API Update mit Stockfisch -> Schach gegen Computer
+	- Größere Auswahl an Figuren Skins
+	- Grafisches anpassen des Feld Designs 
+	-  Zeitlich begrenztes Spiel
+	- Verbesserte Benutzeroberfläche: Jbuttons mit Jpannels austauschen (Feld)
+	- Spiel Menü
+	- Spielanalyse und Statistik (Stockfish)
+	- Soundeffekte und Musik
