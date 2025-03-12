@@ -1,7 +1,6 @@
 package pack1;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -22,7 +21,7 @@ public class Figur {
 	    	
 	    }
 	 
-
+	 //move brechnet alle theoretisch möglichen zügen für die speziellen zug pattern
 	    public void move() {
 	        switch (typ) {
 	            case "bauer":
@@ -94,13 +93,13 @@ public class Figur {
 		            	  move_vorschlage.add(new Position(this.getPosition().getReihe()-1, this.getPosition().getSpalte())); // unten
 	                break;
 	            default:
-	                throw new IllegalStateException("Unbekannter Typ: " + typ);
+	                throw new IllegalStateException("Unbekannter Typ: " + typ); //falls typ falsch ist(debugging)
 	                
 	        }
 	    }
 
 
-
+	    //getter setter der var
 	public Position getPosition() {
 		return position;
 	}

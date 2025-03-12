@@ -1,9 +1,5 @@
 package pack1;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 public class Move {
@@ -37,10 +33,14 @@ public class Move {
 			  unter_array_lst.remove(i);
 			
 		  }
+		  //hier wird überprüft ob eine andere figur bereits auf diesem feld steht, sollte das der Fall sein fällt diese zug option ebenfalls raus
 		  else {
 			  for (int j = 0; j < Main_Schach.alle_figuren.size(); j++) {
 				 if(unter_array_lst.get(i).equals( Main_Schach.alle_figuren.get(j).getPosition())) {
-					 unter_array_lst.remove(i);
+					 if(SchachGUI.ausgewahlte_figur.getTeam().equals(Main_Schach.alle_figuren.get(j).getTeam())) {
+						 unter_array_lst.remove(i);
+					 }
+					
 					 break;
 				 }
 		  

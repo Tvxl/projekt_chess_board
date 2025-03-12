@@ -1,5 +1,7 @@
 package pack1;
 
+
+//Pos Klasse wird verwendendt um das Progamm einfacher zu programmieren, so können positionen dirket bestimmt werden und man verzichtet auf int[]
 public class Position {
     private int reihe;
     private int spalte;
