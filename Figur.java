@@ -118,7 +118,13 @@ public class Figur {
 	    
 	}
 
+	public boolean setfirstmove(boolean eingabe) {
+		return this.first_move = eingabe;
+	}
 	
+	public boolean getfirstmove() {
+		return this.first_move;
+	}
 
 
 	public Position setPosition(int x, int y) {

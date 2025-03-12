@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 
-
 public class SchachGUI extends JFrame {
 
 	/**
@@ -16,6 +15,7 @@ public class SchachGUI extends JFrame {
 	private JButton[][] boardButtons = new JButton[8][8];
 	private boolean figur_wurde_ausgewahlt = false;
 	private List<Position> alle_zuge;
+	static boolean matt = false;
 	private int spielt = 0; // 0 fur weis und 1 fur schwarz
 	static String feld;
 	static Figur ausgewahlte_figur;
@@ -60,7 +60,6 @@ public class SchachGUI extends JFrame {
 				button.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-
 						// Berechne die Schachnotation: Spalte a-h und Reihe 1-8.
 						char colChar = (char) ('a' + currentCol);
 						int rowNumber = 8 - currentRow;
@@ -99,7 +98,7 @@ public class SchachGUI extends JFrame {
 
 								alle_zuge = new Move().eingrenzen_move(alle_zuge, ausgewahlte_figur.getTeam(),
 										ausgewahlte_figur.getTyp());
-								if(alle_zuge.size() == 0) {
+								if (alle_zuge.size() == 0) {
 									figur_wurde_ausgewahlt = false;
 								}
 								System.out.println(alle_zuge);
@@ -108,43 +107,76 @@ public class SchachGUI extends JFrame {
 
 						} else if (figur_wurde_ausgewahlt == true) { // ziel feld überprüfung
 
-							Position neue_pos = new Position(Uebersetzter.schach_zu_koords(feld)[0], // neue pos erstellen
-															Uebersetzter.schach_zu_koords(feld)[1]);
+							Position neue_pos = new Position(Uebersetzter.schach_zu_koords(feld)[0], // neue pos
+																										// erstellen
+									Uebersetzter.schach_zu_koords(feld)[1]);
 
 							for (int i = 0; i < alle_zuge.size(); i++) {
 								if (neue_pos.equals(alle_zuge.get(i))) { // gucken ob neue pos in möglichkeit der figur
-																			// liegt
-									
-									for (int j = 0; j < Main_Schach.alle_figuren.size(); j++) { //updaten der alle_figuren liste
-										if(ausgewahlte_figur.equals(Main_Schach.alle_figuren.get(j))) {
+										//bauern zwei zuge entfernen									// liegt
+									if(ausgewahlte_figur.getTyp().equals("bauer")) {
+										ausgewahlte_figur.setfirstmove(true);
+									}
+									for (int j = 0; j < Main_Schach.alle_figuren.size(); j++) { // updaten der
+																								// alle_figuren liste
+										if (ausgewahlte_figur.equals(Main_Schach.alle_figuren.get(j))) {
 											Main_Schach.alle_figuren.remove(j);
 											Main_Schach.alle_figuren.add(ausgewahlte_figur);
 										}
 									}
-									//schalg uberprufung
+									// schalg uberprufung
 									for (int j = 0; j < Main_Schach.alle_figuren.size(); j++) {
-										if(neue_pos.equals(Main_Schach.alle_figuren.get(j).getPosition())) {
+										if (neue_pos.equals(Main_Schach.alle_figuren.get(j).getPosition())) {
+											if (Main_Schach.alle_figuren.get(j).getTyp().equals("konig")) {
+												// matt uberprufung und reset des feldes
+
+												for (int k = 0; k < Main_Schach.alle_figuren.size(); k++) {
+													Main_Schach.alle_figuren.set(k, null);
+												}
+												Main_Schach.alle_figuren.clear();
+												for (int k = 0; k < 8; k++) {
+													for (int l = 0; l < 8; l++) {
+														boardButtons[k][l].setIcon(null);
+													}
+
+												}
+												matt = true;
+												spielt = 1;
+												setChessPieces();
+												new Main_Schach();
+												break;
+
+											}
 											Main_Schach.alle_figuren.set(j, null); // aus feld rauswerfen
 											Main_Schach.alle_figuren.remove(j);
-											
+
 										}
 									}
-									
-									boardButtons[ausgewahlte_figur.getPosition().getSpalte()][ausgewahlte_figur
-											.getPosition().getReihe()].setIcon(null);// entfernen des icon auf alter pos
-									ausgewahlte_figur.setPosition(currentCol, currentRow);
-									boardButtons[currentRow][currentCol].setIcon(ausgewahlte_figur.getImage()); // icon
-																												// neu
-																												// setzten
-									repaint();
+
+									if (matt == false) {
+										boardButtons[ausgewahlte_figur.getPosition().getSpalte()][ausgewahlte_figur
+												.getPosition().getReihe()].setIcon(null);// entfernen des icon auf alter
+																							// pos
+										ausgewahlte_figur.setPosition(currentCol, currentRow);
+										boardButtons[currentRow][currentCol].setIcon(ausgewahlte_figur.getImage()); // icon
+																													// //
+																													// setzten
+										repaint();
+									} else {
+										matt = false;
+									}
 									// vars nach möglichkeit zurück setzten
 									figur_wurde_ausgewahlt = false;
-									//ausgewahlte_figur = null;
+									// ausgewahlte_figur = null;
 									// team tausch
 									if (spielt == 1) {
 										spielt = 0;
+										System.out.println("0");
+
 									} else if (spielt == 0) {
 										spielt = 1;
+										System.out.println("1");
+
 									}
 								} else {
 									for (int j = 0; j < Main_Schach.alle_figuren.size(); j++) {
